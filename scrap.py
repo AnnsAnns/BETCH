@@ -1,5 +1,6 @@
 import pandas as panda # It is one panda, not 2 smh
-from pprint import pprint as print
+import pickle # save
+from pprint import pprint as print # Because it's the better print, lets be real :P
 
 tables = panda.read_html("https://switchbrew.org/wiki/Error_codes", header=0)
 modules = {}
@@ -23,3 +24,6 @@ for _ in range(tables[2].shape[0]):
     x += 1
 
 print(modules)
+
+with open(f"data/errcodes.pkl", "wb") as p:
+    pickle.dump(modules, p, pickle.HIGHEST_PROTOCOL)
