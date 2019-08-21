@@ -30,10 +30,4 @@ def scrap():
     
     print("Successfully updated error codes!")
 
-def load():
-    with open(f"data/errcodes.pkl", "rb") as betch:
-        errcodes = pickle.load(betch)
-    
-    print("Error codes have been loaded!")
-
-    return errcodes
+    return modules
