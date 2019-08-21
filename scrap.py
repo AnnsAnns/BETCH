@@ -1,21 +1,25 @@
 import pandas as panda # It is one panda, not 2 smh
-import pprint
+from pprint import pprint as print
 
 tables = panda.read_html("https://switchbrew.org/wiki/Error_codes", header=0)
+modules = {}
+x = 0
 
-def conv(tblnum, y, z): # y = 1st col, z = 2nd col
-    rows = tables[tblnum].shape[0] # Shape = = | &!= -
-    x = 0
-    varform = {}
-
-    print(rows)
-    for _ in range(rows):
-        varform.update({tables[tblnum].iloc[x, y]: tables[tblnum].iloc[x, z]})
+def get_modules(tblnum, x):
+    for _ in range(tables[tblnum].shape[0]):
+        modules[tables[tblnum].iloc[x, 0]] = {"name": tables[tblnum].iloc[x, 1]}
         x += 1
+    return modules
 
-    pprint.pprint(varform)
-    return varform
+modules.update(get_modules(1, 0))
+modules.update(get_modules(5, 0))
+print(modules)
 
-modules = conv(1, 0, 1)
-modules.update(conv(5, 0, 1)) # Support modules
-errcodes = conv(2, 0, 3)
+for _ in range(tables[2].shape[0]):
+    try:
+        modules[tables[2].iloc[x, 1]].update({int(tables[2].iloc[x, 2]): tables[2].iloc[x, 3]})
+    except:
+        print("Error: Format Error")
+    x += 1
+
+print(modules)
