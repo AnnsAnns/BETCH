@@ -167,10 +167,15 @@ special_err = {
 
     0xa7200: "Fake-Error by Pegaswitch",
 
-    # By Ave
+    # Old Atmos
+    
+    0x0: "If this happens, you\'re on an very old version of Atmosphere. Please update Atmosphere/Kosmos to fix this.",
 
-    0x0: "Happens in various situations, not necessarily an error, but still prevents booting.\n\nIf you got this because you downgraded, it's because you downgraded between major/key versions (7.0.x -> 6.2.0, 6.2.0 -> 6.1.0 etc) without console initialization (deleting system save files).\n\nTo recover from that: Delete system all save files except 80...120. Keep in mind that this will effectively be a factory reset.",
-}
+    # Funny MaiMai
+    
+    0xdeadbeef: "E A S T E R  E G G",
+
+    }
 
 switch_known_errcode_ranges = {
     # NIM
