@@ -1,3 +1,37 @@
+fatal_err = {
+    162: {2: "Can be triggered by running svcBreak. The svcBreak params have no effect on the value of the thrown error-code."},
+    168: {0: "Userland ARM undefined instruction exception",
+          1: "Userland ARM prefetch-abort due to PC set to non-executable region",
+          2: "Userland ARM data abort. Also caused by abnormal process termination via svcExitProcess. Note: directly jumping to nnMain()-retaddr from non-main-thread has the same result.",
+          3: "Userland PC address not aligned to 4 bytes",
+          8: "Can occur when attempting to call an svc outside the whitelist"}
+}
+
+fs_err = {
+    0x7802: "nn::fs::ResultMountNameAlreadyExists: Error: Specified mount name already exists.",
+    0xD401: "nn::svc::ResultInvalidCurrentMemory: Error: Passed buffer is not usable for fs library. See a manual of fs library for more information.",
+    0x7D202: "nn::fs::ResultPartitionNotFound: Error: Specified partition is not found.",
+    0x7D402: "nn::fs::ResultTargetNotFound: Error: Specified target is not found.",
+    0x177202: "	nn::fs::ResultNotImplemented: Error: Specified operation is not implemented.",
+    0x177A02: "nn::fs::ResultOutOfRange: Error: Specified value is out of range.",
+    0x2EE602: "nn::fs::ResultTooLongPath: Error: Too long path was specified.",
+    0x2EE802: "nn::fs::ResultInvalidCharacter: Error: Invalid path character was specified",
+    0x2EEA02: "	nn::fs::ResultInvalidPathFormat: Error: Invalid path format was specified.",
+    0x2F5A02: "nn::fs::ResultInvalidOffset: Error: Invalid offset was specified.",
+    0x2F5C02: "nn::fs::ResultInvalidSize: Error: Invalid size was specified.",
+    0x2F5E02: "	nn::fs::ResultNullptrArgument: Error: Null pointer argument was specified.",
+    0x2F6202: "	nn::fs::ResultInvalidMountName: Error: Invalid mount name was specified.",
+    0x2F6402: "	nn::fs::ResultExtensionSizeTooLarge: Error: Extension size exceeds max value set in nmeta file.",
+    0x2F6602: "	nn::fs::ResultExtensionSizeInvalid: Error: Extension size is not a multiple of nn::fs::SaveDataExtensionUnitSize.",
+    0x307202: "nn::fs::ResultFileExtensionWithoutOpenModeAllowAppend: Error: OpenMode_AllowAppend is required for implicit extension of file size by WriteFile().",
+    0x327202: "nn::fs::ResultWriteModeFileNotClosed: Error: Close files opened in write mode before committing.",
+    0x328202: "nn::fs::ResultUserNotExist: Error: Specified user doesn't exist.",
+    0x346402: "nn::fs::ResultMappingTableFull: Error: Enough journal space is not left.",
+    0x346A02: "nn::fs::ResultOpenCountLimit: Error: The open count of files and directories reached the limitation.",
+    0x353602: "	nn::fs::ResultMapFull: Error: Save data extension count reached the limitation.",
+    0x35F202: "	nn::fs::ResultNotMounted: Error: Specified mount name is not found.",
+}
+
 special_err = {
 
     # Non-SwitchBrew Error Codes - Mostly stuff sent to me
@@ -148,6 +182,7 @@ switch_known_errcode_ranges = {
     2: [
         [2000, 2499, "Error: Failed to access SD card."],
         [2500, 2999, "Error: Failed to access game card. "],
+        [3200, 3499, "nn::fs::ResultAllocationMemoryFailed: Error: Failed to allocate memory."],
         [3500, 3999, "Error: Failed to access MMC. "],
         [4001, 4299, "Error: ROM is corrupted. "],
         [4301, 4499, "Error: Save data is corrupted."],
@@ -157,6 +192,7 @@ switch_known_errcode_ranges = {
         [4661, 4679, "Error: Built-in-storage is corrupted."],
         [4681, 4699, "Error: FAT FS is corrupted."],
         [4701, 4719, "Error: HOST FS is corrupted."],
+        [4720, 4999, "nn::fs::ResultDataCorrupted: Error: Data is corrupted."],
         [5000, 5999, "Error: Unexpected failure occurred."],
         [6002, 6029, "Error: Invalid path was specified."],
         [6001, 6199, "Error: Invalid argument was specified."],
