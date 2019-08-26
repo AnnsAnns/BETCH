@@ -2,7 +2,8 @@ import re
 import discord
 import BETCH
 import asyncio
-import pprint
+from pprint import pprint as print # Replace with better printing function
+import random
 
 from discord.ext import commands
 from data.legacy_errcodes import *
@@ -11,13 +12,27 @@ bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
 errcodes = {}
 errcodes = BETCH.scrap()
+status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
+            "homebrews crashing", "atmosphere silent updates", "jakibaki cleaning sysmodule ram", "#support")
 
 async def error_updater():
     global errcodes
     while True:
         await asyncio.sleep(21600)
         errcodes = BETCH.scrap()
+
+async def c_status():
+    await bot.wait_until_ready()
+    while True:
+        await bot.change_presence(activity=discord.Activity(name=f"{random.choice(status_q)} | .err"), status=discord.Status.dnd)
+        await asyncio.sleep(1800)
         
+@bot.event
+async def on_ready():
+    print(f"Started on {str(len(bot.guilds))} servers:")
+    for guild in bot.guilds:
+        print(f"{guild.name}")
+                
 @bot.command(aliases=["error", "nxerr", "serr"])
 async def err(ctx, err: str):
     """Searches for Switch error codes!
@@ -116,6 +131,7 @@ async def hextoerror(ctx, err: str):
         await ctx.send(f"{hex(err)} equals {dec_err}")
     else:
         await ctx.send("The error code you have entered doesn't seem to be correct")
-    
-bot.loop.create_task(error_updater())   
+
+bot.loop.create_task(c_status())
+bot.loop.create_task(error_updater())
 bot.run("TOKEN")
