@@ -2,24 +2,26 @@ import re
 import discord
 import BETCH
 import asyncio
+import pprint
 
 from discord.ext import commands
 from data.legacy_errcodes import *
 
 bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
+errcodes = {}
+errcodes = BETCH.scrap()
 
 async def error_updater():
     global errcodes
     while True:
-        errcodes = await BETCH.scrap()
-        await asyncio.time.sleep(21600)
-
+        await asyncio.sleep(21600)
+        errcodes = BETCH.scrap()
+        
 @bot.command(aliases=["error", "nxerr", "serr"])
-async def err(self, ctx, err: str):
+async def err(ctx, err: str):
     """Searches for Switch error codes!
         Usage: .serr/.nxerr/.err <Error Code>"""
-    errcodes = errcodes
     module_name = "Unknown"
     desc_name = "Unknown"
 
@@ -54,32 +56,66 @@ async def err(self, ctx, err: str):
     if module in errcodes:
         module_name = errcodes[module]["name"]
     
-    # Find the description #
-    if desc in errcodes[module]:
-        desc_name = errcodes[module][desc]
-
-    elif module in switch_known_errcode_ranges:
+    # Find the description #        
+    if module in switch_known_errcode_ranges:
         for err_range in switch_known_errcode_ranges[module]:
             if desc >= err_range[0] and desc <= err_range[1]:
                 desc_name = err_range[2]
 
-    elif dec_err in switch_support_page:
-        desc_name = switch_support_page[dec_err]
-
     elif errcode in special_err:
         desc_name = special_err[errcode]
+
+    elif dec_err in switch_support_page:
+        desc_name = switch_support_page[dec_err]
+    
+    elif errcode in fs_err:
+        desc_name = fs_err[errcode]
+        
+    # Always overwrite even if already found #    
+    if module in errcodes:
+        if desc in errcodes[module]:
+            desc_name = errcodes[module][desc]
+            
+    if module in fatal_err:
+        if desc in fatal_err[module]:
+            desc_name = fatal_err[module][desc]
 
     # Embed Creation #
     embed = discord.Embed(title=f"{dec_err} / {hex(errcode)}",
                         url="https://github.com/AtlasNX/BETCH",
                         description=desc_name)
+    embed.set_author(name="Team AtlasNX Error Code Bot",
+                     icon_url="https://raw.githubusercontent.com/AtlasNX/Kosmos/4231e4e1a594b7196f3b4f1a4f65c1591085fa0b/Resources/Icons/atlasnx_trans.png")
     embed.add_field(name="Module",
                     value=f"{module_name} ({module})",
                     inline=True)
     embed.add_field(name="Description", value=desc, inline=True)
-    embed.set_footer(text=f"Brought to you by AtlasNX | Console: Nintendo",
-                    icon_url="https://github.com/AtlasNX/Kosmos/blob/4231e4e1a594b7196f3b4f1a4f65c1591085fa0b/Resources/Icons/atlasnx_trans.png")
-    ctx.send(embed=embed)
+    embed.set_footer(text=f"Console: Nintendo")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=["error2hex", "e2h", "err2hex", "err2hax"])
+async def errortohex(ctx, err: str):
+    if regex_nor_err.match(err):
+        module = int(err[0:4]) - 2000
+        desc = int(err[5:9])
+        errcode = (desc << 9) + module
+        
+        await ctx.send(f"{err} equals {hex(errcode)}")
+    else:
+        await ctx.send("The error code you have entered doesn't seem to be correct")
+
+@bot.command(aliases=["hex2err", "h2e", "hax2err"])
+async def hextoerror(ctx, err: str):
+    if err.startswith("0x"):
+        err = err[2:]
+        errcode = int(err, 16)
+        module = errcode & 0x1FF
+        desc = (errcode >> 9) & 0x3FFF
+        dec_err = f"{(module + 2000):04}-{desc:04}"
+        
+        await ctx.send(f"{hex(err)} equals {dec_err}")
+    else:
+        await ctx.send("The error code you have entered doesn't seem to be correct")
     
 bot.loop.create_task(error_updater())   
 bot.run("TOKEN")
