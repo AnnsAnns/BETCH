@@ -57,7 +57,7 @@ async def err(ctx, err: str):
         embed = discord.Embed(title=err,
                             url="https://github.com/AtlasNX/BETCH",
                             description=desc)
-        embed.set_footer(text="Console: Switch")
+        embed.set_footer(text="Console: Nintendo Switch")
         embed.add_field(name="Game", value=game, inline=True)
 
         await ctx.send(embed=embed)
@@ -105,7 +105,7 @@ async def err(ctx, err: str):
                     value=f"{module_name} ({module})",
                     inline=True)
     embed.add_field(name="Description", value=desc, inline=True)
-    embed.set_footer(text=f"Console: Nintendo")
+    embed.set_footer(text=f"Console: Nintendo Switch")
     await ctx.send(embed=embed)
 
 @bot.command(aliases=["error2hex", "e2h", "err2hex", "err2hax"])
