@@ -37,8 +37,9 @@ async def on_ready():
 async def err(ctx, err: str):
     """Searches for Switch error codes!
         Usage: .serr/.nxerr/.err <Error Code>"""
-    module_name = "Unknown"
-    desc_name = "Unknown"
+    module_name = "Unknown Module"
+    desc_name = " It seems like the error code is unknown! \n If you know the reason for the error code please either update https://switchbrew.org/wiki/Error_codes " \
+                "or send a PR to https://github.com/AtlasNX/BETCH."
 
     if err.startswith("0x"):
         err = err[2:]
