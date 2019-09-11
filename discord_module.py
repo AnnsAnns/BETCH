@@ -64,7 +64,7 @@ async def err(ctx, err: str):
         await ctx.send(embed=embed)
     
     else:
-        ctx.send("Your error code seems to be in a wrong format.")
+        await ctx.send("Your error code seems to be in a wrong format.")
     
     dec_err = f"{(module + 2000):04}-{desc:04}"
 
