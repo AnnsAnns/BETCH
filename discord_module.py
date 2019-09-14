@@ -4,6 +4,7 @@ import BETCH
 import asyncio
 from pprint import pprint as print # Replace with better printing function
 import random
+from config import token
 
 from discord.ext import commands
 from data.legacy_errcodes import *
@@ -135,4 +136,4 @@ async def hextoerror(ctx, err: str):
 
 bot.loop.create_task(c_status())
 bot.loop.create_task(error_updater())
-bot.run("TOKEN")
+bot.run(token)
