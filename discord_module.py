@@ -71,16 +71,15 @@ async def err(ctx, err: str):
 
     # Find the module name #
     if module in errcodes:
-        module_name = errcodes[module]["name"]
+        module_name = errcodes[module]["name"] if "name" in errcodes[module] else "Unknown"
     
     # Find the description #        
     if module in switch_known_errcode_ranges:
         for err_range in switch_known_errcode_ranges[module]:
             if desc >= err_range[0] and desc <= err_range[1]:
                 desc_name = err_range[2]
-        
-    # Always overwrite even if already found since it's the newest source #    
-    if module in errcodes:
+                  
+    if module in errcodes: # Always overwrite even if already found since it's the newest source #  
         if desc in errcodes[module]:
             desc_name = errcodes[module][desc]
 
