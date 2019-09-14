@@ -15,6 +15,7 @@ errcodes = {}
 errcodes = BETCH.scrap(True)
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
             "homebrews crashing", "atmosphere silent updates", "jakibaki cleaning sysmodule ram", "#support")
+bot.remove_command("help")
 
 async def error_updater():
     global errcodes
@@ -119,6 +120,14 @@ async def hextoerror(ctx, err: str):
         await ctx.send(f"{hex(err)} equals {dec_err}")
     else:
         await ctx.send("The error code you have entered doesn't seem to be correct")
+
+@bot.command()
+async def help(ctx):
+    await ctx.send("My only point is to serve this command: ```.err <Error Code>``` (and .err2hex and .hex2err)")
+
+@bot.event
+async def on_command_error(ctx, error):
+    print(f"Error: \"{str(error)}\" when someone typed \"{ctx.message.content}\"")
 
 bot.loop.create_task(c_status())
 bot.loop.create_task(error_updater())
