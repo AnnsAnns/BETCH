@@ -7,12 +7,12 @@ import random
 from config import token
 
 from discord.ext import commands
-from data.legacy_errcodes import *
+from data.legacy_errcodes import switch_known_errcode_ranges, switch_game_err
 
 bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
 errcodes = {}
-errcodes = BETCH.scrap()
+errcodes = BETCH.scrap(True)
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
             "homebrews crashing", "atmosphere silent updates", "jakibaki cleaning sysmodule ram", "#support")
 
@@ -20,7 +20,7 @@ async def error_updater():
     global errcodes
     while True:
         await asyncio.sleep(21600)
-        errcodes = BETCH.scrap()
+        errcodes = BETCH.scrap(True)
 
 async def c_status():
     await bot.wait_until_ready()
@@ -78,15 +78,6 @@ async def err(ctx, err: str):
         for err_range in switch_known_errcode_ranges[module]:
             if desc >= err_range[0] and desc <= err_range[1]:
                 desc_name = err_range[2]
-
-    elif errcode in special_err:
-        desc_name = special_err[errcode]
-
-    elif dec_err in switch_support_page:
-        desc_name = switch_support_page[dec_err]
-    
-    elif errcode in fs_err:
-        desc_name = fs_err[errcode]
         
     # Always overwrite even if already found since it's the newest source #    
     if module in errcodes:
