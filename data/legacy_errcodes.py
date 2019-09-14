@@ -1,3 +1,39 @@
+switch_known_errcode_ranges = {
+    # NIM
+    137: [
+        [8001, 8096, 'libcurl error 1-96. Some of the libcurl errors in the error-table map to the above unknown-libcurl-error however.'],
+    ],
+
+    # FS
+    2: [
+        [2000, 2499, "Error: Failed to access SD card."],
+        [2500, 2999, "Error: Failed to access game card. "],
+        [3200, 3499, "nn::fs::ResultAllocationMemoryFailed: Error: Failed to allocate memory."],
+        [3500, 3999, "Error: Failed to access MMC. "],
+        [4001, 4299, "Error: ROM is corrupted. "],
+        [4301, 4499, "Error: Save data is corrupted."],
+        [4501, 4599, "Error: NCA is corrupted."],
+        [4601, 4639, "Error: Integrity verification failed."],
+        [4641, 4659, "Error: Partition FS is corrupted."],
+        [4661, 4679, "Error: Built-in-storage is corrupted."],
+        [4681, 4699, "Error: FAT FS is corrupted."],
+        [4701, 4719, "Error: HOST FS is corrupted."],
+        [4720, 4999, "nn::fs::ResultDataCorrupted: Error: Data is corrupted."],
+        [5000, 5999, "Error: Unexpected failure occurred."],
+        [6002, 6029, "Error: Invalid path was specified."],
+        [6001, 6199, "Error: Invalid argument was specified."],
+        [6202, 6299, "Error: Invalid operation for the open mode."],
+        [6300, 6399, "Error: Unsupported operation."],
+        [6400, 6499, "Error: Permission denied."],
+    ],
+
+    # NIFM Support Page Links
+    110: [
+        [2900, 2999, "https://en-americas-support.nintendo.com/app/answers/detail/a_id/22277/p/897"],
+        [2000, 2899, "https://en-americas-support.nintendo.com/app/answers/detail/a_id/22263/p/897"],
+    ]
+}
+
 fatal_err = {
     162: {2: "Can be triggered by running svcBreak. The svcBreak params have no effect on the value of the thrown error-code."},
     168: {0: "Userland ARM undefined instruction exception",
@@ -176,42 +212,6 @@ special_err = {
     0xdeadbeef: "E A S T E R  E G G",
 
     }
-
-switch_known_errcode_ranges = {
-    # NIM
-    137: [
-        [8001, 8096, 'libcurl error 1-96. Some of the libcurl errors in the error-table map to the above unknown-libcurl-error however.'],
-    ],
-
-    # FS
-    2: [
-        [2000, 2499, "Error: Failed to access SD card."],
-        [2500, 2999, "Error: Failed to access game card. "],
-        [3200, 3499, "nn::fs::ResultAllocationMemoryFailed: Error: Failed to allocate memory."],
-        [3500, 3999, "Error: Failed to access MMC. "],
-        [4001, 4299, "Error: ROM is corrupted. "],
-        [4301, 4499, "Error: Save data is corrupted."],
-        [4501, 4599, "Error: NCA is corrupted."],
-        [4601, 4639, "Error: Integrity verification failed."],
-        [4641, 4659, "Error: Partition FS is corrupted."],
-        [4661, 4679, "Error: Built-in-storage is corrupted."],
-        [4681, 4699, "Error: FAT FS is corrupted."],
-        [4701, 4719, "Error: HOST FS is corrupted."],
-        [4720, 4999, "nn::fs::ResultDataCorrupted: Error: Data is corrupted."],
-        [5000, 5999, "Error: Unexpected failure occurred."],
-        [6002, 6029, "Error: Invalid path was specified."],
-        [6001, 6199, "Error: Invalid argument was specified."],
-        [6202, 6299, "Error: Invalid operation for the open mode."],
-        [6300, 6399, "Error: Unsupported operation."],
-        [6400, 6499, "Error: Permission denied."],
-    ],
-
-    # NIFM Support Page Links
-    110: [
-        [2900, 2999, "https://en-americas-support.nintendo.com/app/answers/detail/a_id/22277/p/897"],
-        [2000, 2899, "https://en-americas-support.nintendo.com/app/answers/detail/a_id/22263/p/897"],
-    ]
-}
 
 # Game Erros - Strings because Nintendo decided that it would be useless to put them into normal ints ;^)
 # Attention: These need to be formatted -> <errcode>: "<game>: <description>" - Also Nintendo support codes
