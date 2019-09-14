@@ -26,6 +26,21 @@ def scrap():
         except:
             print("Error: Format Error")
         x += 1
+    
+    # FS Errors #
+        
+    x = 0    
+    for _ in range(tables[3].shape[0]):  
+        try: # FS errors are the ranged error heaven so we can only scrap a very small amount without handling edge cases
+            err = tables[3].iloc[x, 0][2:]
+            errcode = int(err, 16)
+            desc = (errcode >> 9) & 0x3FFF
+            
+            modules[2].update({desc: tables[3].iloc[x, 2]})
+        except:
+            print("Error: Format Error")
+            
+        x += 1    
         
     # Fatal Errors #     
     

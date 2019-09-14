@@ -16,7 +16,7 @@ This rewrite features automatic scrapping of error codes, a better format for er
 
 ```pip install -r requirements.py```
 
-and then ```edit bot.run("TOKEN")``` in "discord_module.py" to your discord token.*
+and then ```token = "YOUR-TOKEN"``` in "config.py" to your discord token.
 
 ---
 

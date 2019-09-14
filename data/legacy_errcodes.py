@@ -34,15 +34,6 @@ switch_known_errcode_ranges = {
     ]
 }
 
-fatal_err = {
-    162: {2: "Can be triggered by running svcBreak. The svcBreak params have no effect on the value of the thrown error-code."},
-    168: {0: "Userland ARM undefined instruction exception",
-          1: "Userland ARM prefetch-abort due to PC set to non-executable region",
-          2: "Userland ARM data abort. Also caused by abnormal process termination via svcExitProcess. Note: directly jumping to nnMain()-retaddr from non-main-thread has the same result.",
-          3: "Userland PC address not aligned to 4 bytes",
-          8: "Can occur when attempting to call an svc outside the whitelist"}
-}
-
 fs_err = {
     0x7802: "nn::fs::ResultMountNameAlreadyExists: Error: Specified mount name already exists.",
     0xD401: "nn::svc::ResultInvalidCurrentMemory: Error: Passed buffer is not usable for fs library. See a manual of fs library for more information.",

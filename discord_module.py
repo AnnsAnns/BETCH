@@ -88,14 +88,10 @@ async def err(ctx, err: str):
     elif errcode in fs_err:
         desc_name = fs_err[errcode]
         
-    # Always overwrite even if already found #    
+    # Always overwrite even if already found since it's the newest source #    
     if module in errcodes:
         if desc in errcodes[module]:
             desc_name = errcodes[module][desc]
-            
-    if module in fatal_err:
-        if desc in fatal_err[module]:
-            desc_name = fatal_err[module][desc]
 
     # Embed Creation #
     embed = discord.Embed(title=f"{dec_err} / {hex(errcode)}",
