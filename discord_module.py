@@ -25,7 +25,7 @@ async def error_updater():
 async def c_status():
     await bot.wait_until_ready()
     while True:
-        await bot.change_presence(activity=discord.Activity(name=f"{random.choice(status_q)} | .err"), status=discord.Status.dnd)
+        await bot.change_presence(activity=discord.Activity(name=f"{random.choice(status_q)} | .err", type=2), status=discord.Status.dnd)
         await asyncio.sleep(1800)
         
 @bot.event

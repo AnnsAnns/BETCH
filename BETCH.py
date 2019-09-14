@@ -97,6 +97,14 @@ def convert(sanity):
     if not sanity: # When I want to manually convert it
         modules = load()
     
+    # Nintendo's official error pages #
+    
+    for err in switch_support_page.keys():
+        module = int(err[0:4]) - 2000
+        desc = int(err[5:9])
+        
+        updatedict(module, desc, switch_support_page[err])
+    
     # Special/Non-Switchbrew Error Codes #
     
     for oerr in special_err.keys():
@@ -106,13 +114,6 @@ def convert(sanity):
         desc = (errcode >> 9) & 0x3FFF
         
         updatedict(module, desc, special_err[oerr])
-        
-    # Nintendo's official error pages #
     
-    for err in switch_support_page.keys():
-        module = int(err[0:4]) - 2000
-        desc = int(err[5:9])
-        
-        updatedict(module, desc, switch_support_page[err])
-        
-    dump(modules)
+    if not sanity:    
+        dump(modules)
