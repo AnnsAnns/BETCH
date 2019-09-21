@@ -16,8 +16,8 @@ def dump(data):
 
 # Simplify code and have easier edge case protection
 def updatedict(module, desc, str_desc):
-    global modules # Local man triggers 50 python devs by using global
-
+    global modules
+    
     if not module in modules:
         modules[module] = {}
 
@@ -26,54 +26,7 @@ def updatedict(module, desc, str_desc):
     except:
         print("Error updating error (Ironic, isn't it)")
 
-def scrap(sanity):
-    global modules
-    
-    if sanity: # Completely recreate the dictionary
-        modules = {}
-        convert(True)
-    else:
-        modules = load()
-    
-    tables = panda.read_html("https://switchbrew.org/wiki/Error_codes", header=0)    
-    x = 0
-
-    # Get Support/Normal Modules #
-
-    def get_modules(tblnum, x): # function since the extraction is identical in both cases
-        for _ in range(tables[tblnum].shape[0]):
-            updatedict(tables[tblnum].iloc[x, 0], "name", tables[tblnum].iloc[x, 1])
-            x += 1
-
-    get_modules(1, 0) # Normal Modules
-    get_modules(5, 0) # Support Modules
-
-    # Get Normal Error Codes #
-
-    for _ in range(tables[2].shape[0]):
-        try:
-            updatedict(tables[2].iloc[x, 1], int(tables[2].iloc[x, 2]), tables[2].iloc[x, 3])
-        except:
-            print("Error: Format Error")
-        x += 1
-
-    # FS Errors #
-
-    x = 0
-    for _ in range(tables[3].shape[0]):
-        try: # FS errors are the ranged error heaven so we can only scrap a very small amount without handling edge cases
-            err = tables[3].iloc[x, 0][2:]
-            errcode = int(err, 16)
-            desc = (errcode >> 9) & 0x3FFF
-
-            updatedict(2, desc, tables[3].iloc[x, 2])
-        except:
-            print("Error: Format Error")
-        x += 1
-
-    # Fatal Errors #
-
-    x = 0
+def scrap_fatal(x):
     for _ in range(tables[4].shape[0]):
         ext_desc = tables[4].iloc[x, 0]
         module = int(ext_desc[0:4]) - 2000
@@ -85,18 +38,32 @@ def scrap(sanity):
             print("Error: Format Error")
         x += 1
 
-    print(modules)
-    dump(modules)
+def scrap_normal(x):
+    for _ in range(tables[2].shape[0]):
+        try:
+            updatedict(tables[2].iloc[x, 1], int(tables[2].iloc[x, 2]), tables[2].iloc[x, 3])
+        except:
+            print("Error: Format Error")
+        x += 1
 
-    print("Successfully updated error codes!")
+def scrap_modules(x, tblnum): # function since the extraction is identical in both cases
+    for _ in range(tables[tblnum].shape[0]):
+        updatedict(tables[tblnum].iloc[x, 0], "name", tables[tblnum].iloc[x, 1])
+        x += 1
+            
+def scrap_fs(x):
+    for _ in range(tables[3].shape[0]):
+        try: # FS errors are the ranged error heaven so we can only scrap a very small amount without handling edge cases
+            err = tables[3].iloc[x, 0][2:]
+            errcode = int(err, 16)
+            desc = (errcode >> 9) & 0x3FFF
 
-    return modules
+            updatedict(2, desc, tables[3].iloc[x, 2])
+        except:
+            print("Error: Format Error")
+        x += 1
 
-def convert(sanity):
-    global modules
-    if not sanity: # When I want to manually convert it
-        modules = load()
-    
+def scrap_legacy_converter():
     # Nintendo's official error pages #
     
     for err in switch_support_page.keys():
@@ -115,5 +82,24 @@ def convert(sanity):
         
         updatedict(module, desc, special_err[oerr])
     
-    if not sanity:    
-        dump(modules)
+def scrap():
+    global modules
+    global tables
+    
+    modules = {}
+    tables = panda.read_html("https://switchbrew.org/wiki/Error_codes", header=0)    
+    
+    scrap_modules(0, 1) # Normal Modules
+    scrap_modules(0, 5) # Support Modules
+    
+    scrap_legacy_converter()
+    scrap_fatal(0)
+    scrap_fs(0)
+    scrap_normal(0)
+
+    print(modules)
+    dump(modules)
+
+    print("Successfully updated error codes!")
+
+    return modules

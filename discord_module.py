@@ -12,7 +12,7 @@ from data.legacy_errcodes import switch_known_errcode_ranges, switch_game_err
 bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
 errcodes = {}
-errcodes = BETCH.scrap(True)
+errcodes = BETCH.scrap()
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
             "homebrews crashing", "atmosphere silent updates", "jakibaki cleaning sysmodule ram", "#support")
 bot.remove_command("help")
@@ -21,7 +21,7 @@ async def error_updater():
     global errcodes
     while True:
         await asyncio.sleep(21600)
-        errcodes = BETCH.scrap(True)
+        errcodes = BETCH.scrap()
 
 async def c_status():
     await bot.wait_until_ready()
