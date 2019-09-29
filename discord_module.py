@@ -2,16 +2,16 @@ import re
 import discord
 import BETCH
 import asyncio
-from pprint import pprint as print # Replace with better printing function
 import random
-from config import token
 
+from pprint import pprint as print # Replace with better printing function
+from config import token
 from discord.ext import commands
 from data.legacy_errcodes import switch_known_errcode_ranges, switch_game_err
 
 bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
-errcodes = {}
+usage_stats = {}
 errcodes = BETCH.scrap()
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
             "homebrews crashing", "atmosphere silent updates", "jakibaki cleaning sysmodule ram", "#support")
@@ -31,9 +31,12 @@ async def c_status():
         
 @bot.event
 async def on_ready():
-    print(f"Started on {str(len(bot.guilds))} servers:")
+    members = 0
+    
     for guild in bot.guilds:
-        print(f"{guild.name}")
+        members += len(guild.members)
+        
+    print(f"Started {bot.user.name} on {len(bot.guilds)} servers with {members} members!")
                 
 @bot.command(aliases=["error", "nxerr", "serr"])
 async def err(ctx, err: str):
