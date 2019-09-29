@@ -64,9 +64,10 @@ async def err(ctx, err: str):
         embed.add_field(name="Game", value=game, inline=True)
 
         await ctx.send(embed=embed)
-    
+        return
     else:
         await ctx.send("Your error code seems to be in a wrong format.")
+        return
     
     dec_err = f"{(module + 2000):04}-{desc:04}"
 
@@ -94,6 +95,24 @@ async def err(ctx, err: str):
                     value=f"{module_name} ({module})",
                     inline=True)
     embed.add_field(name="Description", value=desc, inline=True)
+    embed.set_footer(text=f"Console: Nintendo Switch")
+    await ctx.send(embed=embed)
+
+@bot.command(aliases=["modules", "errmodule", "dec2module"])
+async def module(ctx, module: int):
+    if not module in errcodes:
+        await ctx.send("ERROR: There is no entry for that module!")
+        return
+
+    module_name = errcodes[module]["name"] if "name" in errcodes[module] else "Unknown"
+    number_errors = len(errcodes[module])
+    
+    # Embed Creation #
+    embed = discord.Embed(title=f"{module_name} ({module})",
+                        url="https://github.com/AtlasNX/BETCH",
+                        description=f"The module {module_name} ({module}) has {number_errors} registered errors.")
+    embed.set_author(name="Team AtlasNX Error Code Bot",
+                     icon_url="https://raw.githubusercontent.com/AtlasNX/Kosmos/4231e4e1a594b7196f3b4f1a4f65c1591085fa0b/Resources/Icons/atlasnx_trans.png")
     embed.set_footer(text=f"Console: Nintendo Switch")
     await ctx.send(embed=embed)
 
