@@ -1,5 +1,5 @@
 modules = {
- 0: {0: "If this happens, you're on an very old version of Atmosphere. Please "
+0: {0: "If this happens, you're on an very old version of Atmosphere. Please "
         'update Atmosphere/Kosmos to fix this.',
      1337: 'Fake-Error by Pegaswitch'},
  1: {7: 'Session count exceeded',
@@ -28,7 +28,7 @@ modules = {
      122: 'Irq/DeviceAddressSpace/{...} already registered',
      123: 'Port remote dead',
      124: '[Usermode] Unhandled interrupt/exception',
-     125: 'Process already started/Wrong memory permission?',
+     125: 'Invalid state',
      126: 'Reserved value',
      127: 'Invalid hardware breakpoint',
      128: '[Usermode] Fatal exception',
@@ -52,15 +52,12 @@ modules = {
      39: 'Not enough free space on SD card.',
      50: 'NCA is older than version 3, or NCA SDK version is older than '
          '0.11.0.0',
-     60: 'nn::fs::ResultMountNameAlreadyExists: Error: Specified mount name '
-         'already exists.',
+     60: 'Specified mount name already exists.',
      106: 'nn::svc::ResultInvalidCurrentMemory: Error: Passed buffer is not '
           'usable for fs library. See a manual of fs library for more '
           'information.',
-     1001: 'nn::fs::ResultPartitionNotFound: Error: Specified partition is not '
-           'found.',
-     1002: 'nn::fs::ResultTargetNotFound: Error: Specified target is not '
-           'found.',
+     1001: 'Process does not have RomFs',
+     1002: 'Title-id not found / savedata not found.',
      2001: 'SD card not inserted',
      2503: 'gc out of bounds sector access',
      2520: 'Gamecard not inserted',
@@ -68,8 +65,7 @@ modules = {
      2541: 'Version check failed when mounting gamecard sysupdate partition?',
      2542: 'gc sector start is out of range for partition 1',
      2954: 'Invalid gamecard handle.',
-     3001: 'nn::fs::ResultNotImplemented: Error: Specified operation is not '
-           'implemented.',
+     3001: 'Unimplemented behavior',
      3003: 'File/Directory already exists.',
      3005: 'nn::fs::ResultOutOfRange: Error: Specified value is out of range.',
      3201: 'Memory allocation failure related to FAT filesystem code',
@@ -129,13 +125,11 @@ modules = {
      5127: 'Invalid FAT sector',
      5301: 'Mountpoint not found',
      6001: 'Invalid input',
-     6003: 'nn::fs::ResultTooLongPath: Error: Too long path was specified.',
-     6004: 'nn::fs::ResultInvalidCharacter: Error: Invalid path character was '
-           'specified.',
-     6005: 'nn::fs::ResultInvalidPathFormat: Error: Invalid path format was '
-           'specified.',
+     6003: 'Path too long',
+     6004: 'Invalid character.',
+     6005: 'Invalid directory path.',
      6006: 'Unable to retrieve directory from path',
-     6061: 'nn::fs::ResultInvalidOffset: Error: Invalid offset was specified.',
+     6061: 'Offset outside storage',
      6062: 'nn::fs::ResultInvalidSize: Error: Invalid size was specified.',
      6063: 'nn::fs::ResultNullptrArgument: Error: Null pointer argument was '
            'specified.',
@@ -249,8 +243,7 @@ modules = {
      6451: 'Missing titlekey(?) required to mount content',
      6455: 'File not closed',
      6456: 'Directory not closed',
-     6457: 'nn::fs::ResultWriteModeFileNotClosed: Error: Close files opened in '
-           'write mode before committing.',
+     6457: 'Writable file not closed when committing',
      6458: 'FS allocators already registered',
      6459: 'FS allocators already used',
      6461: 'FS allocator alignment violation',
@@ -263,8 +256,7 @@ modules = {
            'directories reached the limitation.',
      6811: 'nn::fs::ResultMapFull: Error: Save data extension count reached '
            'the limitation.',
-     6905: 'nn::fs::ResultNotMounted: Error: Specified mount name is not '
-           'found.',
+     6905: 'Mount name not found in table.',
      7902: 'RomFs table: Entry not found in dictionary',
      7903: 'RomFs table: File not found',
      7904: 'RomFs table: Directory not found',
@@ -596,10 +588,10 @@ modules = {
        30: 'Bad input buffer size',
        32: 'Invalid input buffer',
        100: 'invalid user',
-       4007: 'Console Ban, https://en-americas-support.nintendo.com/app/answers/detail/a_id/28046/p/897',
+       4007: '(normal) console ban',
        5111: '(potential) complete account ban',
-       8006: 'DNS Resolution error, https://en-americas-support.nintendo.com/app/answers/detail/a_id/25858/p/897',
-       8007: 'DNS Resolution error, https://en-americas-support.nintendo.com/app/answers/detail/a_id/25858/p/897',
+       8006: 'https://en-americas-support.nintendo.com/app/answers/detail/a_id/25858/p/897',
+       8007: 'Error in account login/creation',
        8028: 'https://en-americas-support.nintendo.com/app/answers/detail/a_id/22443/p/897',
        'name': 'Account'},
  125: {'name': 'News'},
@@ -625,9 +617,35 @@ modules = {
             'LeaveFatalSection without a preceding EnterFatalSection call)',
        600: 'Failed to allocate memory for IStorage',
        712: 'Thread stack pool exhausted (out of memory)',
-       980: 'am.debug!dev_function setting needs to be set',
+       974: 'DebugMode not enabled',
+       980: 'am.debug!dev_function setting needs to be set / DebugMode not '
+            'enabled',
+       998: 'Not implemented',
        'name': 'AM'},
- 129: {'name': 'Play Report'},
+ 129: {102: 'Transmission not agreed',
+       105: 'Network unavailable',
+       1005: 'HTTP error: Couldnt resolve proxy',
+       1006: 'HTTP error: Couldnt resolve host',
+       1007: 'HTTP error: Couldnt connect',
+       1023: 'HTTP error: Write error',
+       1026: 'HTTP error: Read error',
+       1027: 'HTTP error: Out of memory',
+       1028: 'HTTP error: Operation timedout',
+       1035: 'HTTP error: SSL connect error',
+       1051: 'HTTP error: Peer failed verification',
+       1052: 'HTTP error: Got nothing',
+       1055: 'HTTP error: Send error',
+       1056: 'HTTP error: Recv error',
+       1058: 'HTTP error: SSL cert problem',
+       1059: 'HTTP error: SSL cipher',
+       1060: 'HTTP error: SSL CA cert',
+       2400: 'Server error: Status 400',
+       2401: 'Server error: Status 401',
+       2403: 'Server error: Status 403',
+       2500: 'Server error: Status 500',
+       2503: 'Server error: Status 503',
+       2504: 'Server error: Status 504',
+       'name': 'Play Report'},
  130: {'name': 'HID (ahid)'},
  131: {5: 'Unrecognized applet ID'},
  132: {'name': 'Home Menu (Qlaunch)'},
@@ -688,7 +706,7 @@ modules = {
  158: {'name': 'Updater'},
  159: {'name': 'SWKBD'},
  160: {8006: 'https://en-americas-support.nintendo.com/app/answers/detail/a_id/28530/p/897',
-       8007: 'https://en-americas-support.nintendo.com/app/answers/detail/a_id/28530/p/897'},
+       8007: 'Failed connection test'},
  161: {'name': 'NFC (Mifare)'},
  162: {2: 'Can be triggered by running svcBreak. The svcBreak params have no '
           'effect on the value of the thrown error-code.',
@@ -716,7 +734,9 @@ modules = {
        'name': 'PDM'},
  179: {'name': 'OLSC'},
  180: {'name': 'SREPO'},
- 181: {4008: 'https://en-americas-support.nintendo.com/app/answers/detail/a_id/42061/p/897',
+ 181: {4007: 'Device authentication error: Under maintenance',
+       4008: 'Device authentication error: Banned',
+       4009: 'Device authentication error: Internal server error',
        'name': 'Dauth'},
  187: {'name': 'Sasbus'},
  191: {'name': 'RTC'},
@@ -828,7 +848,7 @@ modules = {
        17: 'LibnxNvidiaError_SharedMemoryTooSmall',
        18: 'LibnxNvidiaError_FileOperationFailed',
        19: 'LibnxNvidiaError_IoctlFailed',
-       'name': 'libnx Nvidia errors'},
+       'name': 'libnx NVIDIA errors'},
  349: {1: 'LibnxBinderError_Unknown',
        2: 'LibnxBinderError_NoMemory',
        3: 'LibnxBinderError_InvalidOperation',
@@ -845,8 +865,10 @@ modules = {
        14: 'LibnxBinderError_WouldBlock',
        15: 'LibnxBinderError_TimedOut',
        16: 'LibnxBinderError_UnknownTransaction',
-       17: 'LibnxBinderError_FdsNotAllowed'},
+       17: 'LibnxBinderError_FdsNotAllowed',
+       'name': 'libnx Binder errors'},
  495: {1623: 'Atmosphere: Version Mismatch'},
+ 520: {'name': 'NVIDIA Error Report (nverpt)'},
  618: {6: 'https://en-americas-support.nintendo.com/app/answers/detail/a_id/25856/p/897',
        201: 'This error may be the result your connection timing out due to a '
             'slow Internet service or a poor wireless environment. '
@@ -876,5 +898,4 @@ modules = {
              '(https://en-americas-support.nintendo.com/app/answers/detail/a_id/25870/p/897)',
        6838: 'You are unable to redeem a Nintendo eShop Card '
              '(https://en-americas-support.nintendo.com/app/answers/detail/a_id/22630/p/897)'},
- 7001: {26: 'https://en-americas-support.nintendo.com/app/answers/detail/a_id/27311/p/897'}
-}
+ 7001: {26: 'https://en-americas-support.nintendo.com/app/answers/detail/a_id/27311/p/897'}}

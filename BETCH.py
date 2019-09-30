@@ -91,6 +91,7 @@ def scrap():
     
     scrap_modules(0, 1) # Normal Modules
     scrap_modules(0, 5) # Support Modules
+    scrap_modules(0, 7) # Homebrew Modules
     
     scrap_legacy_converter()
     scrap_fatal(0)
