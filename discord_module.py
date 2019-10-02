@@ -120,23 +120,18 @@ async def module(ctx, module: int):
                         description=f"The module {module_name} ({module}) has {number_errors} registered errors.")
     embed.set_author(name="Team AtlasNX Error Code Bot",
                      icon_url="https://raw.githubusercontent.com/AtlasNX/Kosmos/4231e4e1a594b7196f3b4f1a4f65c1591085fa0b/Resources/Icons/atlasnx_trans.png")
-    embed.set_footer(text=f"Console: Nintendo Switch")
+    embed.set_footer(text="Console: Nintendo Switch")
     await ctx.send(embed=embed)
 
-@bot.command(aliases=["error2hex", "e2h", "err2hex", "err2hax"])
-async def errortohex(ctx, err: str):
+@bot.command(aliases=["hex2err", "h2e", "hax2err", "hextoerror", "errortohex", "error2hex", "e2h", "err2hex", "err2hax"])
+async def convert(ctx, err: str):
     if regex_nor_err.match(err):
         module = int(err[0:4]) - 2000
         desc = int(err[5:9])
         errcode = (desc << 9) + module
         
         await ctx.send(f"{err} equals {hex(errcode)}")
-    else:
-        await ctx.send("The error code you have entered doesn't seem to be correct")
-
-@bot.command(aliases=["hex2err", "h2e", "hax2err"])
-async def hextoerror(ctx, err: str):
-    if err.startswith("0x"):
+    elif err.startswith("0x"):
         err = err[2:]
         errcode = int(err, 16)
         module = errcode & 0x1FF
@@ -149,7 +144,9 @@ async def hextoerror(ctx, err: str):
 
 @bot.command()
 async def help(ctx):
-    await ctx.send("My only point is to serve this command: ```.err <Error Code>``` (and .err2hex and .hex2err)")
+    await ctx.send("```.err/.serr <ERROR CODE>: Shows relevant details for your error code \n"\
+                  ".module <MODULE>: Shows name of the module and amount of registered error codes for it\n"\
+                  ".convert <ERROR CODE>: Converts error code to either hex or decimal```")
 
 @bot.event
 async def on_command_error(ctx, error):
