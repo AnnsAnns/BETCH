@@ -41,14 +41,14 @@ def scrap_fatal(x):
 def scrap_normal(x):
     for _ in range(tables[2].shape[0]):
         try:
-            updatedict(tables[2].iloc[x, 1], int(tables[2].iloc[x, 2]), tables[2].iloc[x, 3])
+            updatedict(int(tables[2].iloc[x, 1]), int(tables[2].iloc[x, 2]), tables[2].iloc[x, 3])
         except:
             print("Error: Format Error")
         x += 1
 
 def scrap_modules(x, tblnum): # function since the extraction is identical in both cases
     for _ in range(tables[tblnum].shape[0]):
-        updatedict(tables[tblnum].iloc[x, 0], "name", tables[tblnum].iloc[x, 1])
+        updatedict(int(tables[tblnum].iloc[x, 0]), "name", tables[tblnum].iloc[x, 1])
         x += 1
             
 def scrap_fs(x):

@@ -12,16 +12,9 @@ from data.legacy_errcodes import switch_known_errcode_ranges, switch_game_err
 bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
 usage_stats = {}
-errcodes = BETCH.scrap()
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
             "homebrews crashing", "atmosphere silent updates", "jakibaki cleaning sysmodule ram", "#support")
 bot.remove_command("help")
-
-async def error_updater():
-    global errcodes
-    while True:
-        await asyncio.sleep(21600)
-        errcodes = BETCH.scrap()
 
 async def c_status():
     await bot.wait_until_ready()
@@ -34,7 +27,7 @@ async def on_ready():
     members = 0
     
     for guild in bot.guilds:
-        members += len(guild.members)
+        members += guild.member_count
         
     print(f"Started {bot.user.name} on {len(bot.guilds)} servers with {members} members!")
                 
@@ -45,6 +38,7 @@ async def err(ctx, err: str):
     module_name = "Unknown Module"
     desc_name = " It seems like the error code is unknown! \n If you know the reason for the error code please either update https://switchbrew.org/wiki/Error_codes " \
                 "or send a PR to https://github.com/AtlasNX/BETCH."
+    errcodes = BETCH.load()
 
     if err.startswith("0x"):
         err = err[2:]
@@ -103,6 +97,8 @@ async def err(ctx, err: str):
 
 @bot.command(aliases=["modules", "errmodule", "dec2module"])
 async def module(ctx, module: int):
+    errcodes = BETCH.load()
+    
     if not module in errcodes:
         await ctx.send("ERROR: There is no entry for that module!")
         return
@@ -152,5 +148,4 @@ async def on_command_error(ctx, error):
     print(f"Error: \"{str(error)}\" when someone typed \"{ctx.message.content}\"")
 
 bot.loop.create_task(c_status())
-bot.loop.create_task(error_updater())
 bot.run(token)
