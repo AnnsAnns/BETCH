@@ -22,4 +22,6 @@ and then ```token = "YOUR-TOKEN"``` in "config.py" to your discord token.
 
 # License
 
-The bot is licensed under LGPLv3. Feel free to use it in any way as long as you follow the rules of the license.
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+repository, You can obtain one at https://mozilla.org/MPL/2.0/.
