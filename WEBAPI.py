@@ -2,7 +2,7 @@ import BETCH
 import hug
 
 @hug.get("/API/BETCH/ERRCODE")
-def betch_api(module_int: int, description_int: int):
+async def betch_api(module_int: int, description_int: int):
     modules = BETCH.load()
     
     response = {"module_int": module_int, 
@@ -19,6 +19,6 @@ def betch_api(module_int: int, description_int: int):
     return response
 
 @hug.get("/API/BETCH/ALL")
-def all_errorcodes():
+async def all_errorcodes():
     modules = BETCH.load()    
     return modules
