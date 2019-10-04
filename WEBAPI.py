@@ -1,9 +1,11 @@
 import BETCH
 import hug
+import pickle
 
 @hug.get("/API/BETCH/ERRCODE")
 async def betch_api(module_int: int, description_int: int):
-    modules = BETCH.load()
+    with open(f"data/errcodes.pkl", "rb") as betch:
+        modules = pickle.load(betch)
     
     response = {"module_int": module_int, 
                 "module_name": "Unknown",
@@ -20,5 +22,7 @@ async def betch_api(module_int: int, description_int: int):
 
 @hug.get("/API/BETCH/ALL")
 async def all_errorcodes():
-    modules = BETCH.load()    
+    with open(f"data/errcodes.pkl", "rb") as betch:
+        modules = pickle.load(betch)
+            
     return modules

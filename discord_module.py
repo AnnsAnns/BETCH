@@ -7,6 +7,7 @@ import discord
 import BETCH
 import asyncio
 import random
+import pickle
 
 from pprint import pprint as print # Replace with better printing function
 from config import token
@@ -42,7 +43,8 @@ async def err(ctx, err: str):
     module_name = "Unknown Module"
     desc_name = " It seems like the error code is unknown! \n If you know the reason for the error code please either update https://switchbrew.org/wiki/Error_codes " \
                 "or send a PR to https://github.com/AtlasNX/BETCH."
-    errcodes = BETCH.load()
+    with open(f"data/errcodes.pkl", "rb") as betch:
+        errcodes = pickle.load(betch)
 
     if err.startswith("0x"):
         err = err[2:]
@@ -101,7 +103,8 @@ async def err(ctx, err: str):
 
 @bot.command(aliases=["modules", "errmodule", "dec2module"])
 async def module(ctx, module: int):
-    errcodes = BETCH.load()
+    with open(f"data/errcodes.pkl", "rb") as betch:
+        errcodes = pickle.load(betch)
     
     if not module in errcodes:
         await ctx.send("ERROR: There is no entry for that module!")
