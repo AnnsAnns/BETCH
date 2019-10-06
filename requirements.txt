@@ -3,3 +3,6 @@ beautifulsoup4
 lxml
 pprint
 html5lib
+flask
+flask-jsonpify
+flask-restful
