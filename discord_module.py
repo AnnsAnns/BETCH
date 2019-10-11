@@ -8,6 +8,7 @@ import BETCH
 import asyncio
 import random
 import pickle
+import aiohttp
 
 from pprint import pprint as print # Replace with better printing function
 from config import token
@@ -43,8 +44,6 @@ async def err(ctx, err: str):
     module_name = "Unknown Module"
     desc_name = " It seems like the error code is unknown! \n If you know the reason for the error code please either update https://switchbrew.org/wiki/Error_codes " \
                 "or send a PR to https://github.com/AtlasNX/BETCH."
-    with open(f"data/errcodes.pkl", "rb") as betch:
-        errcodes = pickle.load(betch)
 
     if err.startswith("0x"):
         err = err[2:]
@@ -74,19 +73,18 @@ async def err(ctx, err: str):
     
     dec_err = f"{(module + 2000):04}-{desc:04}"
 
-    # Find the module name #
-    if module in errcodes:
-        module_name = errcodes[module]["name"] if "name" in errcodes[module] else "Unknown"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"http://51.15.99.129/api/betch/{module}/{desc}") as resp: # Use the IP in order to save super slow DNS resolving
+            response = await resp.json()
+    
+    module_name = response["module_str"]
+    desc_name = response["description_str"]
     
     # Find the description #        
     if module in switch_known_errcode_ranges:
         for err_range in switch_known_errcode_ranges[module]:
             if desc >= err_range[0] and desc <= err_range[1]:
                 desc_name = err_range[2]
-                  
-    if module in errcodes: # Always overwrite even if already found since it's the newest source #  
-        if desc in errcodes[module]:
-            desc_name = errcodes[module][desc]
 
     # Embed Creation #
     embed = discord.Embed(title=f"{dec_err} / {hex(errcode)}",
@@ -102,10 +100,11 @@ async def err(ctx, err: str):
     await ctx.send(embed=embed)
 
 @bot.command(aliases=["modules", "errmodule", "dec2module"])
-async def module(ctx, module: int):
-    with open(f"data/errcodes.pkl", "rb") as betch:
-        errcodes = pickle.load(betch)
-    
+async def module(ctx, module: str):
+    async with aiohttp.ClientSession() as session:
+        async with session.get("http://51.15.99.129/api/betch/all") as resp: # Use the IP in order to save super slow DNS resolving
+            errcodes = await resp.json()
+        
     if not module in errcodes:
         await ctx.send("ERROR: There is no entry for that module!")
         return
