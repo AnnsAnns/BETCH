@@ -19,7 +19,7 @@ bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
 usage_stats = {}
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
-            "homebrews crashing", "atmosphere silent updates", "jaki cleaning sysmodule ram", "#support")
+            "homebrews crashing", "atmosphere silent updates", "emily cleaning sysmodule ram", "#support")
 bot.remove_command("help")
 
 async def c_status():
