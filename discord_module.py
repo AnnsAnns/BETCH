@@ -110,7 +110,7 @@ async def module(ctx, module: str):
             if not "name" in errcodes[module_int]:
                 continue
             
-            if errcodes[module_int]["name"] == module:
+            if module.lower() in errcodes[module_int]["name"].lower():
                 module = module_int
                 break
     
