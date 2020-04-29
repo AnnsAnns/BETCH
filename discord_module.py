@@ -104,7 +104,16 @@ async def module(ctx, module: str):
     async with aiohttp.ClientSession() as session:
         async with session.get("http://51.15.99.129/api/betch/all") as resp: # Use the IP in order to save super slow DNS resolving
             errcodes = await resp.json()
-        
+    
+    if module.isdigit():
+        for module_int in errcodes:
+            if not "name" in errcodes[module_int]:
+                continue
+            
+            if errcodes[module_int]["name"] == module:
+                module = module_int
+                break
+    
     if not module in errcodes:
         await ctx.send("ERROR: There is no entry for that module!")
         return
