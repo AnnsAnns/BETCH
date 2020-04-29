@@ -105,7 +105,7 @@ async def module(ctx, module: str):
         async with session.get("http://51.15.99.129/api/betch/all") as resp: # Use the IP in order to save super slow DNS resolving
             errcodes = await resp.json()
     
-    if module.isdigit():
+    if not module.isdigit():
         for module_int in errcodes:
             if not "name" in errcodes[module_int]:
                 continue
