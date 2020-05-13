@@ -43,7 +43,7 @@ async def err(ctx, err: str):
         Usage: .serr/.nxerr/.err <Error Code>"""
     module_name = "Unknown Module"
     desc_name = " It seems like the error code is unknown! \n If you know the reason for the error code please either update https://switchbrew.org/wiki/Error_codes " \
-                "or send a PR to https://github.com/AtlasNX/BETCH."
+                "or send a PR to https://github.com/tumGER/BETCH."
 
     if err.startswith("0x"):
         err = err[2:]
@@ -60,9 +60,9 @@ async def err(ctx, err: str):
         game, desc = switch_game_err[err].split(":")
 
         embed = discord.Embed(title=err,
-                            url="https://github.com/AtlasNX/BETCH",
+                            url="https://github.com/tumGER/BETCH",
                             description=desc)
-        embed.set_footer(text="Console: Nintendo Switch")
+        embed.set_footer(text="Please consider donating to keep the API running: https://ko-fi.com/tomger")
         embed.add_field(name="Game", value=game, inline=True)
 
         await ctx.send(embed=embed)
@@ -88,7 +88,7 @@ async def err(ctx, err: str):
 
     # Embed Creation #
     embed = discord.Embed(title=f"{dec_err} / {hex(errcode)}",
-                        url="https://github.com/AtlasNX/BETCH",
+                        url="https://github.com/tumGER/BETCH",
                         description=desc_name)
     embed.set_author(name="Team AtlasNX Error Code Bot",
                      icon_url="https://raw.githubusercontent.com/AtlasNX/Kosmos/4231e4e1a594b7196f3b4f1a4f65c1591085fa0b/Resources/Icons/atlasnx_trans.png")
@@ -96,7 +96,7 @@ async def err(ctx, err: str):
                     value=f"{module_name} ({module})",
                     inline=True)
     embed.add_field(name="Description", value=desc, inline=True)
-    embed.set_footer(text=f"Console: Nintendo Switch")
+    embed.set_footer(text=f"Please consider donating to keep the API running: https://ko-fi.com/tomger")
     await ctx.send(embed=embed)
 
 @bot.command(aliases=["modules", "errmodule", "dec2module"])
@@ -123,11 +123,11 @@ async def module(ctx, module: str):
     
     # Embed Creation #
     embed = discord.Embed(title=f"{module_name} ({module})",
-                        url="https://github.com/AtlasNX/BETCH",
+                        url="https://github.com/tumGER/BETCH",
                         description=f"The module {module_name} ({module}) has {number_errors} registered errors.")
-    embed.set_author(name="Team AtlasNX Error Code Bot",
-                     icon_url="https://raw.githubusercontent.com/AtlasNX/Kosmos/4231e4e1a594b7196f3b4f1a4f65c1591085fa0b/Resources/Icons/atlasnx_trans.png")
-    embed.set_footer(text="Console: Nintendo Switch")
+    embed.set_author(name="tomGER's Error Code Bot",
+                     icon_url="https://raw.githubusercontent.com/tumGER/Random-Stuff/afb0afe96e311728f10e20966bb10f19ab0ecbb7/ApplicationFrameHost_93Yi2ReO3J.png")
+    embed.set_footer(text="Please consider donating to keep the API running: https://ko-fi.com/tomger")
     await ctx.send(embed=embed)
 
 @bot.command(aliases=["hex2err", "h2e", "hax2err", "hextoerror", "errortohex", "error2hex", "e2h", "err2hex", "err2hax"])

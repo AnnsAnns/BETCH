@@ -1,5 +1,7 @@
 # [Click for Bot Invite](https://discordapp.com/api/oauth2/authorize?client_id=520331685104189452&permissions=0&scope=bot)
 
+### Donations to keep the bot running: https://ko-fi.com/tomger
+
 ---
 
 # What is this?
@@ -14,11 +16,11 @@ This rewrite features automatic scrapping of error codes, a better format for er
 
 There are 3 requests you can set to the server @ err.teamatlasnx.com!
 
-A. ```err.teamatlasnx.com/api/betch/all``` -> Sends every single error code in a huge dictionary
+A. ```betch.tomger.eu/api/betch/all``` -> Sends every single error code in a huge dictionary
 
-B. ```err.teamatlasnx.com/api/betch/<module_int>/<description_int>``` -> Sends the info related to that error code
+B. ```betch.tomger.eu/api/betch/<module_int>/<description_int>``` -> Sends the info related to that error code
 
-C. ```err.teamatlasnx.com/api/betch/reload/<token>``` -> Reloads the error list
+C. ```betch.tomger.eu/api/betch/reload/<token>``` -> Reloads the error list
 
 ---
 
