@@ -14,7 +14,7 @@ This rewrite features automatic scrapping of error codes, a better format for er
 
 # API
 
-There are 3 requests you can set to the server @ err.teamatlasnx.com!
+There are 3 requests you can set to the server @ betch.tomger.eu!
 
 A. ```betch.tomger.eu/api/betch/all``` -> Sends every single error code in a huge dictionary
 
