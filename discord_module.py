@@ -62,9 +62,9 @@ async def err(ctx, err: str):
 
         embed = discord.Embed(title=err,
                             url="https://github.com/tumGER/BETCH",
-                            description=desc)
+                            description=f"{desc} {desc_donation_link}")
         embed.set_footer(text="Console: Nintendo Switch")
-        embed.add_field(name="Game", value=game + desc_donation_link, inline=True)
+        embed.add_field(name="Game", value=game, inline=True)
 
         await ctx.send(embed=embed)
         return
@@ -90,13 +90,13 @@ async def err(ctx, err: str):
     # Embed Creation #
     embed = discord.Embed(title=f"{dec_err} / {hex(errcode)}",
                         url="https://github.com/tumGER/BETCH",
-                        description=desc_name)
+                        description=f"{desc_name} {desc_donation_link}")
     embed.set_author(name="Error Code Bot",
                      icon_url="https://raw.githubusercontent.com/tumGER/Random-Stuff/c05959658d3ca0fb8d0a7d674062b2b845d88c3d/GBATemp%20Sign%20Meme/inkscape_hql9WK4JaJ.png")
     embed.add_field(name="Module",
                     value=f"{module_name} ({module})",
                     inline=True)
-    embed.add_field(name="Description", value=desc + desc_donation_link, inline=True)
+    embed.add_field(name="Description", value=desc, inline=True)
     embed.set_footer(text=f"Console: Nintendo Switch")
     await ctx.send(embed=embed)
 
@@ -125,7 +125,7 @@ async def module(ctx, module: str):
     # Embed Creation #
     embed = discord.Embed(title=f"{module_name} ({module})",
                         url="https://github.com/tumGER/BETCH",
-                        description=f"The module {module_name} ({module}) has {number_errors} registered errors." + desc_donation_link)
+                        description=f"The module {module_name} ({module}) has {number_errors} registered errors. {desc_donation_link}")
     embed.set_author(name="Error Code Bot",
                      icon_url="https://raw.githubusercontent.com/tumGER/Random-Stuff/c05959658d3ca0fb8d0a7d674062b2b845d88c3d/GBATemp%20Sign%20Meme/inkscape_hql9WK4JaJ.png")
     embed.set_footer(text="Console: Nintendo Switch")
