@@ -19,8 +19,9 @@ bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
 usage_stats = {}
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
-            "homebrews crashing", "atmosphere silent updates", "emily cleaning sysmodule ram", "#support")
+            "homebrews crashing", "ko-fi.com/tomGER donations", "patreon.com/tomGER donations")
 bot.remove_command("help")
+desc_donation_link = "\n \n Please consider donating to keep the API running via https://ko-fi.com/tomger or https://www.patreon.com/tomger"
 
 async def c_status():
     await bot.wait_until_ready()
@@ -62,8 +63,8 @@ async def err(ctx, err: str):
         embed = discord.Embed(title=err,
                             url="https://github.com/tumGER/BETCH",
                             description=desc)
-        embed.set_footer(text="Please consider donating to keep the API running: https://ko-fi.com/tomger")
-        embed.add_field(name="Game", value=game, inline=True)
+        embed.set_footer(text="Console: Nintendo Switch")
+        embed.add_field(name="Game", value=game + desc_donation_link, inline=True)
 
         await ctx.send(embed=embed)
         return
@@ -90,13 +91,13 @@ async def err(ctx, err: str):
     embed = discord.Embed(title=f"{dec_err} / {hex(errcode)}",
                         url="https://github.com/tumGER/BETCH",
                         description=desc_name)
-    embed.set_author(name="Team AtlasNX Error Code Bot",
-                     icon_url="https://raw.githubusercontent.com/AtlasNX/Kosmos/4231e4e1a594b7196f3b4f1a4f65c1591085fa0b/Resources/Icons/atlasnx_trans.png")
+    embed.set_author(name="Error Code Bot",
+                     icon_url="https://raw.githubusercontent.com/tumGER/Random-Stuff/c05959658d3ca0fb8d0a7d674062b2b845d88c3d/GBATemp%20Sign%20Meme/inkscape_hql9WK4JaJ.png")
     embed.add_field(name="Module",
                     value=f"{module_name} ({module})",
                     inline=True)
-    embed.add_field(name="Description", value=desc, inline=True)
-    embed.set_footer(text=f"Please consider donating to keep the API running: https://ko-fi.com/tomger")
+    embed.add_field(name="Description", value=desc + desc_donation_link, inline=True)
+    embed.set_footer(text=f"Console: Nintendo Switch")
     await ctx.send(embed=embed)
 
 @bot.command(aliases=["modules", "errmodule", "dec2module"])
@@ -124,10 +125,10 @@ async def module(ctx, module: str):
     # Embed Creation #
     embed = discord.Embed(title=f"{module_name} ({module})",
                         url="https://github.com/tumGER/BETCH",
-                        description=f"The module {module_name} ({module}) has {number_errors} registered errors.")
-    embed.set_author(name="tomGER's Error Code Bot",
-                     icon_url="https://raw.githubusercontent.com/tumGER/Random-Stuff/afb0afe96e311728f10e20966bb10f19ab0ecbb7/ApplicationFrameHost_93Yi2ReO3J.png")
-    embed.set_footer(text="Please consider donating to keep the API running: https://ko-fi.com/tomger")
+                        description=f"The module {module_name} ({module}) has {number_errors} registered errors." + desc_donation_link)
+    embed.set_author(name="Error Code Bot",
+                     icon_url="https://raw.githubusercontent.com/tumGER/Random-Stuff/c05959658d3ca0fb8d0a7d674062b2b845d88c3d/GBATemp%20Sign%20Meme/inkscape_hql9WK4JaJ.png")
+    embed.set_footer(text="Console: Nintendo Switch")
     await ctx.send(embed=embed)
 
 @bot.command(aliases=["hex2err", "h2e", "hax2err", "hextoerror", "errortohex", "error2hex", "e2h", "err2hex", "err2hax"])
