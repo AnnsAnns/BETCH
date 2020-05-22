@@ -14,13 +14,13 @@ This rewrite features automatic scrapping of error codes, a better format for er
 
 # API
 
-There are 3 requests you can set to the server @ betch.tomger.eu!
+There are 3 requests you can set to the server @ err.tomger.eu!
 
-A. ```betch.tomger.eu/api/betch/all``` -> Sends every single error code in a huge dictionary
+A. ```err.tomger.eu/api/betch/all``` -> Sends every single error code in a huge dictionary
 
-B. ```betch.tomger.eu/api/betch/<module_int>/<description_int>``` -> Sends the info related to that error code
+B. ```err.tomger.eu/api/betch/<module_int>/<description_int>``` -> Sends the info related to that error code
 
-C. ```betch.tomger.eu/api/betch/reload/<token>``` -> Reloads the error list
+C. ```err.tomger.eu/api/betch/reload/<token>``` -> Reloads the error list
 
 ---
 
