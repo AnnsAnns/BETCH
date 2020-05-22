@@ -75,7 +75,7 @@ async def err(ctx, err: str):
     dec_err = f"{(module + 2000):04}-{desc:04}"
 
     async with aiohttp.ClientSession() as session:
-        async with session.get(f"http://err.tomger.eu/api/betch/{module}/{desc}") as resp: # Use the IP in order to save super slow DNS resolving
+        async with session.get(f"http://err.tomger.eu/api/betch/{module}/{desc}") as resp:
             response = await resp.json()
     
     module_name = response["module_str"]
@@ -103,7 +103,7 @@ async def err(ctx, err: str):
 @bot.command(aliases=["modules", "errmodule", "dec2module"])
 async def module(ctx, module: str):
     async with aiohttp.ClientSession() as session:
-        async with session.get("http://err.tomger.eu/api/betch/all") as resp: # Use the IP in order to save super slow DNS resolving
+        async with session.get("http://err.tomger.eu/api/betch/all") as resp:
             errcodes = await resp.json()
     
     if not module.isdigit():
