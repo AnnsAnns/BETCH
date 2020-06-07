@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	bot, err := discordgo.New("Bot " + "NzE1NTUyNzQyNzU1NTMyODEx.Xs_CPQ.63y6MZ4sf35eUjc1hwWDgRH_um8")
+	bot, err := discordgo.New("Bot " + "Token")
 	if err != nil {
 		fmt.Println("Error authenticating to discord: ", err)
 		return
@@ -94,11 +94,12 @@ func errSearcher(ctx *dgc.Ctx) {
 		if err != nil {}
 		moduleInt, err := strconv.Atoi(module)
 		if err != nil {}
+		moduleInt -= 2000
 
 		errcode := (descInt << 9) + moduleInt
 
 		ctx.RespondText(string(arg))
-		ctx.RespondText("The following error code was given to me as a string: " + string(errcode))
+		ctx.RespondText(fmt.Sprintf("The following error code was given to me as a string: %#x", errcode))
 
 	} else if strings.HasPrefix(arg, "0x") {
 		errcode, err := strconv.ParseInt(arg, 0, 0)
@@ -112,7 +113,7 @@ func errSearcher(ctx *dgc.Ctx) {
 		decErr := fmt.Sprint(module + 2000, "-", desc)
 
 		ctx.RespondText(string(decErr))
-		ctx.RespondText("The following error code was given to me in hex: " + string(errcode))
+		ctx.RespondText("The following error code was given to me in hex: " + arg)
 	}
 }
 
