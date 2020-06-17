@@ -19,9 +19,9 @@ bot = commands.Bot(command_prefix=".")
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
 usage_stats = {}
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
-            "homebrews crashing", "ko-fi.com/tomGER donations", "patreon.com/tomGER donations")
+            "homebrews crashing", "ko-fi.com/tomGER donations")
 bot.remove_command("help")
-desc_donation_link = "\n \n Please consider donating to keep the API running via https://ko-fi.com/tomger or https://www.patreon.com/tomger"
+desc_donation_link = "\n \n Please consider donating to keep the API running via https://ko-fi.com/tomger"
 
 async def c_status():
     await bot.wait_until_ready()
