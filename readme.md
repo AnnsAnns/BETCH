@@ -1,5 +1,7 @@
 # [Click for Bot Invite](https://discordapp.com/api/oauth2/authorize?client_id=520331685104189452&permissions=0&scope=bot)
 
+# [Discord Client Plugin for Goose Mod](https://github.com/GooseMod-Modules/SwitchErrorLookup)
+
 ### Donations to keep the bot running: https://ko-fi.com/tomger
 
 ---
