@@ -108,3 +108,6 @@ def scrap():
     print("Successfully updated error codes!")
 
     return modules
+
+if __name__ == "__main__":
+    scrap()
