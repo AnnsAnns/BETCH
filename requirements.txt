@@ -5,3 +5,4 @@ html5lib
 flask
 flask-jsonpify
 flask-restful
+discord.py
