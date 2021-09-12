@@ -1,8 +1,8 @@
 import BETCH
-import json
+import simplejson
 
 if __name__ == "__main__":
     data = BETCH.scrap()
     
     with open("api.json", "w") as file:
-        json.dump(data, file, indent = 3)
+        simplejson.dump(data, file, indent = 3, ignore_nan=True)

@@ -7,3 +7,4 @@ flask-jsonpify
 flask-restful
 discord
 aiohttp
+simplejson
