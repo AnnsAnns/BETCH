@@ -16,13 +16,9 @@ This rewrite features automatic scrapping of error codes, a better format for er
 
 # API
 
-There are 3 requests you can set to the server @ err.tomger.eu!
+v1 of the API ran on a dedicated webserver at err.tomger.eu. Sadly servers are expensive and as such the "API" was re-engineered to be be a fully static file that gets updated through Github Actions at https://raw.githubusercontent.com/tumGER/BETCH/actions/api.json.
 
-A. ```err.tomger.eu/api/betch/all``` -> Sends every single error code in a huge dictionary
-
-B. ```err.tomger.eu/api/betch/<module_int>/<description_int>``` -> Sends the info related to that error code
-
-C. ```err.tomger.eu/api/betch/reload/<token>``` -> Reloads the error list
+[That static file](https://raw.githubusercontent.com/tumGER/BETCH/actions/api.json) will always have the most updated version of the BETCH error codes.
 
 ---
 

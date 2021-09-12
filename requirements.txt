@@ -8,3 +8,4 @@ flask-restful
 discord
 aiohttp
 simplejson
+dislash.py
