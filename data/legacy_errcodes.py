@@ -177,6 +177,14 @@ special_err = {
     
     "0xdeadbeef": "E A S T E R  E G G",
 
+    # https://github.com/tumGER/BETCH/issues/18
+    
+    "0x3ed32": "Error caused by failure to connect to a working server.",
+
+    # https://github.com/tumGER/BETCH/issues/25
+    
+    "0x8a2": "Atmosphere: ForcedShutdownDetected",
+
     }
 
 # Game Erros - Strings because Nintendo decided that it would be useless to put them into normal ints ;^)
