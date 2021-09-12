@@ -1,3 +1,5 @@
 config.py
 *.pyc
 *.pkl
+.env
+rusty_betch/target/*
