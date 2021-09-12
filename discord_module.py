@@ -17,7 +17,7 @@ from dislash import InteractionClient, Option, OptionType
 from data.legacy_errcodes import switch_known_errcode_ranges, switch_game_err
 
 bot = commands.Bot(command_prefix=".")
-inter_client = InteractionClient(bot, test_guilds=[335895133805477889, 364791892635811840])
+inter_client = InteractionClient(bot)
 regex_nor_err = re.compile(r"2\d{3}\-\d{4}")
 usage_stats = {}
 status_q = ("crashing Switches", "fatals around the world", "crying developers", "confused developers", 
