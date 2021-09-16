@@ -24,7 +24,7 @@ v1 of the API ran on a dedicated webserver at err.tomger.eu. Sadly servers are e
 
 # Manual Installation
 
-**This bot is hosted freely [HERE](https://discordapp.com/api/oauth2/authorize?client_id=520331685104189452&permissions=0&scope=bot), feel free to use it instead**
+**This bot is hosted freely [HERE](https://discord.com/api/oauth2/authorize?client_id=520331685104189452&permissions=0&scope=bot%20applications.commands), feel free to use it instead**
 
 ```pip install -r requirements.py```
 
