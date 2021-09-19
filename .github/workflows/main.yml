@@ -5,6 +5,8 @@ on:
     branches:
       - master
       - Cinnabar
+  schedule:
+      - cron:  '0 6,12,18, * * *' # God is that syntax stupid
 
 jobs:
   deploy:
