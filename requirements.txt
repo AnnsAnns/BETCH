@@ -2,9 +2,5 @@ pandas
 beautifulsoup4
 lxml
 html5lib
-flask
-flask-jsonpify
-flask-restful
-discord
 aiohttp
 simplejson
