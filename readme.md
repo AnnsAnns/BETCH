@@ -1,10 +1,10 @@
 > [!CAUTION]
 > Due to massive changes in the Discord API, deprecated libraries and a personal lack of interest in Switch homebrew this repository has been archived.
-> [Robocop/Komet](https://github.com/reswitched/robocop-ng) offers a far more limited but still functional error helper for the most common error codes.
+> [Robocop](https://github.com/reswitched/robocop-ng) offers the initial version of the error code module, still maintained by the Reswitched Team and should cover the most common errors.
 
 ---
 
-# [Click for Bot Invite](https://discord.com/api/oauth2/authorize?client_id=520331685104189452&permissions=0&scope=bot%20applications.commands)
+# [Click for Bot Invite](#)
 
 # [Discord Client Plugin for Goose Mod](https://github.com/GooseMod-Modules/SwitchErrorLookup)
 
@@ -20,15 +20,15 @@ This rewrite features automatic scrapping of error codes, a better format for er
 
 # API
 
-v1 of the API ran on a dedicated webserver at err.tomger.eu. Sadly servers are expensive and as such the "API" was re-engineered to be be a fully static file that gets updated through Github Actions at https://raw.githubusercontent.com/tumGER/BETCH/actions/api.json.
+v1 of the API ran on a dedicated webserver at [DEPRECATED]. Sadly servers are expensive and as such the "API" was re-engineered to be be a fully static file that gets updated through Github Actions at https://raw.githubusercontent.com/tumGER/BETCH/actions/api.json.
 
-[That static file](https://raw.githubusercontent.com/tumGER/BETCH/actions/api.json) will always have the most updated version of the BETCH error codes.
+[That static file](https://raw.githubusercontent.com/AnnsAnns/BETCH/actions/api.json) will always have the most updated version of the BETCH error codes.
 
 ---
 
 # Manual Installation
 
-**This bot is hosted freely [HERE](https://discordapp.com/api/oauth2/authorize?client_id=520331685104189452&permissions=0&scope=bot), feel free to use it instead**
+**This bot is hosted freely [HERE](#), feel free to use it instead**
 
 ```pip install -r requirements.py```
 
