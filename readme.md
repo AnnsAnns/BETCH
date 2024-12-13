@@ -1,8 +1,12 @@
+> [!CAUTION]
+> Due to massive changes in the Discord API, deprecated libraries and a personal lack of interest in Switch homebrew this repository has been archived.
+> [Robocop/Komet](https://github.com/reswitched/robocop-ng) offers a far more limited but still functional error helper for the most common error codes.
+
+---
+
 # [Click for Bot Invite](https://discord.com/api/oauth2/authorize?client_id=520331685104189452&permissions=0&scope=bot%20applications.commands)
 
 # [Discord Client Plugin for Goose Mod](https://github.com/GooseMod-Modules/SwitchErrorLookup)
-
-### Donations to keep the bot running: https://ko-fi.com/tomger
 
 ---
 
